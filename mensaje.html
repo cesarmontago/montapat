@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tu Mensaje Especial 💖</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            color: rgb(68, 68, 68);
+            background: url('') no-repeat center center fixed;
+            background-size: cover;
+            box-sizing: border-box;
+            height: auto; /* Permite desplazamiento si es necesario */
+        }
+
+        .contenido {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 90%;
+            width: 100%;
+            position: relative;
+            color: white;
+            max-height: 90vh; /* Evita que se desborde en pantallas pequeñas */
+            overflow-y: auto; /* Permite hacer scroll en caso de contenido largo */
+        }
+
+        p {
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 18px;
+        }
+
+        h1 {
+            font-size: 24px;
+        }
+        #video-fondo {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        /* Botones flexibles */
+        .botones {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            background-color: white;
+            border: none;
+            padding: 10px 20px;
+            color: #000;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: transform 0.3s ease, background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #ff1493;
+            color: white;
+            transform: scale(1.1);
+        }
+
+        #playMusic {
+            background-color: #ff1493;
+            color: white;
+            padding: 12px 25px;
+            font-size: 20px;
+            border-radius: 25px;
+            display: none; /* Se oculta por defecto */
+        }
+
+        #playMusic:hover {
+            background-color: #ff69b4;
+        }
+
+        /* Estilos para pantallas pequeñas */
+        @media (max-width: 768px) {
+            .contenido {
+                padding: 15px;
+                max-width: 95%;
+            }
+
+            h1 {
+                font-size: 20px;
+            }
+
+            p {
+                font-size: 16px;
+            }
+
+            button {
+                font-size: 16px;
+                padding: 8px 15px;
+            }
+
+            .botones {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+        }
+    </style>
+</head>
+<body>
+    <video autoplay loop muted playsinline id="video-fondo">
+        <source src="Love.mp4" type="video/mp4">
+    </video>
+    
+    <audio id="musica" loop>
+        <source src="Corazon.mp3" type="audio/mp3">
+    </audio>
+    
+    <div class="contenido">
+        <h1 class="fade-text">
+            <span>Con Amor para mi niña: </span>
+        </h1>
+        <p class="fade-text">
+            <b>
+                "Hoy es San Valentín, pero para mí, cada día contigo es especial. A veces me detengo a pensar en todo lo que hemos vivido: las risas, las conversaciones interminables, incluso los momentos difíciles que nos han hecho más fuertes. No es solo el pasado lo que valoro, sino el futuro que estamos construyendo juntos.
+
+                Quiero que sepas que no doy por sentado lo que tenemos, porque estar contigo es una elección que haría una y otra vez. No sé exactamente a dónde nos llevará la vida, pero sí sé que quiero descubrirlo contigo, sin duda alguna el mejor tiempo es el que invierto estando contigo, créeme que cada risa que tenemos en común es un año más de vida que me regalas.
+                <br><br>
+                Me encantas, no hay cosa de ti que no me guste y quiero seguir descubriendo cosas contigo. Mi misión es tenerte como mi compañera de vida. Eres tan increíble que aún estando triste haces sentir bien a los demás. Eres tan valiente que te levantas todos los días temprano para dar lo mejor de ti aunque a veces no lo quieras. Tu presencia es tan importante que a donde sea que vayas robas miradas y sonrisas. 
+                <br><br>
+                Esos ojitos hermosos color miel... ahh cómo me encanta reflejarme en ellos. Esa boquita tan pequeña y linda que tienes hace que no pare de mirarla cuando estoy contigo y me enamora besarla una y otra vez... y así podría seguir expresando todo lo que me enamora de ti.
+                <br><br>
+                Tienes un corazón lleno de bondad con toda devoción de apoyar a quien lo necesite y una mente llena de ideas valiosas y creativas listas para complementar toda actividad. Jamás dudes de tu capacidad para lograr algo, yo sé que con el tiempo serás una excelente neuropsicologa porque asi te visualizo a futuro.
+                <br><br>
+                Gracias por ser mi refugio, mi compañera y mi mejor historia hasta ahora." 
+            </b>
+            
+        </p>
+        <p class="fade-text">
+            <b><br> Te Amo Ximena Patiño 🫂❤️</b>
+        </p>
+        
+        <div class="botones">
+            <button id="playMusic">Reproducir música 🎶</button>
+            <a href="index.html"><button>Volver</button></a>
+        </div>
+    
+    </div>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const musica = document.getElementById("musica");
+            function intentarReproducir() {
+                musica.play().catch(() => {
+                    console.log("El usuario debe interactuar para reproducir la música.");
+                });
+            }
+            intentarReproducir(); // Intenta reproducir la música al cargar la página
+        });
+    </script>
+    
+</body>
+</html>

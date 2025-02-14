@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz San Valentín Mi Pat</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            color: white;
+            overflow: hidden;
+            position: relative;
+            border: 10px solid rgba(255, 105, 180, 0.8);
+            box-shadow: 0 0 25px rgba(255, 20, 147, 0.8);
+            animation: glow 1.5s infinite alternate;
+        }
+        
+        @keyframes glow {
+            from { box-shadow: 0 0 15px rgba(255, 20, 147, 0.8); }
+            to { box-shadow: 0 0 35px rgba(255, 20, 147, 1); }
+        }
+
+        #video-fondo {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        .valentine-text {
+            font-family: 'Dancing Script', cursive;
+            font-size: 5vw;
+            font-weight: 700;
+            color: white;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+            position: absolute;
+            top: 15%;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 3px solid white;
+        }
+
+        .contenido {
+            position: relative;
+            z-index: 1;
+            margin-top: 10vh;
+        }
+
+        .btn-leeme {
+            display: inline-block;
+            padding: 15px 30px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            background: linear-gradient(45deg, #ff69b4, #ff1493);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 15px rgba(255, 20, 147, 0.5);
+            transition: all 0.3s ease-in-out;
+            text-decoration: none;
+        }
+
+        .btn-leeme:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 25px rgba(255, 20, 147, 1);
+        }
+
+        .corazon {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: red;
+            clip-path: polygon(50% 0%, 100% 35%, 80% 100%, 50% 80%, 20% 100%, 0% 35%);
+            animation: flotar 5s infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes flotar {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-100vh); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <video autoplay loop muted playsinline id="video-fondo">
+        <source src="03.mp4" type="video/mp4">
+    </video>
+    
+    <h2 class="valentine-text" id="valentine-text"></h2>
+    
+    <div class="contenido">
+        <a href="mensaje.html" class="btn-leeme hidden" id="btn-leeme">📖 Léeme</a>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const textElement = document.getElementById("valentine-text");
+            const text = "For My Valentine";
+            let index = 0;
+    
+            function typeWriter() {
+                if (index < text.length) {
+                    textElement.innerHTML += text.charAt(index);
+                    index++;
+                    setTimeout(typeWriter, 200);
+                } else {
+                    textElement.style.borderRight = "none";
+                    showButton();
+                }
+            }
+    
+            function showButton() {
+                const button = document.getElementById("btn-leeme");
+                button.classList.add("show");
+            }
+    
+            setTimeout(typeWriter, 500);
+
+            function crearCorazones() {
+                setInterval(() => {
+                    let corazon = document.createElement("div");
+                    corazon.classList.add("corazon");
+                    corazon.style.left = Math.random() * 100 + "vw";
+                    corazon.style.animationDuration = (Math.random() * 3 + 2) + "s";
+                    document.body.appendChild(corazon);
+                    setTimeout(() => { corazon.remove(); }, 5000);
+                }, 500);
+            }
+            crearCorazones();
+        });
+    </script>
+</body>
+</html>
